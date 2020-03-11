@@ -2,16 +2,19 @@ package InfectStatisticWeb.dao;
 
 import java.io.*;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import InfectStatisticWeb.pojo.Province;
 import InfectStatisticWeb.util.FileUtil;
 
 public class ProvinceDAOImpl implements ProvinceDAO
 {
-
+    private Province country;
+    
     public HashMap<String,Province> init()
     {
-        HashMap<String,Province> map = new HashMap<String, Province>();
+        country = new Province("全国");
+        HashMap<String,Province> map = new LinkedHashMap<String, Province>();
         for (int i = 0; i < FileUtil.provinceName.length; i ++ )
         {
             map.put(FileUtil.provinceName[i], new Province(FileUtil.provinceName[i]));
@@ -44,14 +47,14 @@ public class ProvinceDAOImpl implements ProvinceDAO
                 while ((line = br.readLine()) != null)
                 {
                     String[] array = line.split(" ");
-                    System.out.println(line);
+                    //System.out.println(line);
                     dealOneLine(map, array);
                 }          
                 br.close();
             }                               
         }
-
-        //allStatistic();
+        //统计全国情况
+        allStatistic(map);
         
         return map;
     }
@@ -97,17 +100,31 @@ public class ProvinceDAOImpl implements ProvinceDAO
                 break;
         }   
     }
+    public void allStatistic(HashMap<String,Province> map)
+    {
+        for (int i = 0; i < FileUtil.provinceName.length; i ++ )
+        {            
+            country.allAdd(map.get(FileUtil.provinceName[i]));        
+        }        
+    }
+    
+    public Province getCountry()
+    {
+        return country;
+    }
     
     public static void main(String args[])
     {
         ProvinceDAO testDao = new ProvinceDAOImpl();
         try
         {
-            HashMap<String,Province> map = testDao.deal("2020-01-20");
+            HashMap<String,Province> map = testDao.deal("2020-01-21");
             for (String key : map.keySet())
             {
                 map.get(key).output();
             }
+            Province country = testDao.getCountry();
+            country.output();
         } 
         catch (IOException e)
         {

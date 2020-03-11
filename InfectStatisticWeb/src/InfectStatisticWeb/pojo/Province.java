@@ -124,6 +124,15 @@ public class Province
         str = str.substring(0, str.length()-1);
         allInfection += Integer.parseInt(str);
     }
+    //统计全国的情况
+    public void allAdd(Province p)
+    {
+        this.infection += p.infection;
+        this.allInfection += p.allInfection;
+        this.suspected += p.suspected;
+        this.cure += p.cure;
+        this.dead += p.dead;
+    }
     
     //输出本省情况
     public void output()
