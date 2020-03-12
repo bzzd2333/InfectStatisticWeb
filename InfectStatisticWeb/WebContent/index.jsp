@@ -360,7 +360,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             myChart.setOption(option);
             myChart.on('click', function (params) {
                 sessionStorage.setItem('name', params.name);
-                window.location.href = "2.html";
+                window.location.href = "detail.jsp";
                 //alert(params.name);
             });
   
