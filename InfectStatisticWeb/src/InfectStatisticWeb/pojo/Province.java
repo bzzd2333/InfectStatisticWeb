@@ -4,6 +4,8 @@ public class Province
 {
     //省份名称
     private String name;
+    //省份日期
+    private String date;
     //现有确诊
     private int infection;
     //累计确诊
@@ -18,6 +20,17 @@ public class Province
     public Province(String n)
     {
         setName(n);
+    }
+    
+    public Province(Province source)
+    {
+        this.name = source.name;
+        this.date = source.date;
+        this.infection = source.infection;
+        this.allInfection = source.allInfection;
+        this.suspected = source.suspected;
+        this.cure = source.cure;
+        this.dead = source.dead;
     }
 
     public String getName()
@@ -134,6 +147,12 @@ public class Province
         this.dead += p.dead;
     }
     
+    public int[] getData()
+    {
+        int[] data = new int[]{infection,suspected,allInfection,cure,dead};
+        return data;
+    }
+    
     //输出本省情况
     public void output()
     {
@@ -142,5 +161,15 @@ public class Province
                 + "疑似患者 " + suspected + "人 "
                 + "治愈 " + cure + "人 "
                 + "死亡 " + dead + "人");            
+    }
+
+    public String getDate()
+    {
+        return date;
+    }
+
+    public void setDate(String date)
+    {
+        this.date = date;
     }
 }
