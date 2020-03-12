@@ -154,20 +154,61 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         }
         .div_top_r
         {
-            border-top-left-radius:15px;
-            border-top-right-radius:15px;
+            border-top-left-radius:10px;
+            border-top-right-radius:10px;
         }
         .div_bottom_r
         {
-            border-bottom-left-radius:15px;
-            border-bottom-right-radius:15px; 
+            border-bottom-left-radius:10px;
+            border-bottom-right-radius:10px; 
+        }
+        #title2
+        {
+            border-style: none;
+        }
+        #d11
+        {
+            background: #00BFC8;
+            color: white;
+            height:45px;
+            margin-right: 4px;
+            margin-left:296px;
+            border-top-left-radius:5px;
+            border-top-right-radius:5px;
+            border-bottom-left-radius:5px;
+            border-bottom-right-radius:5px; 
+        }
+        #d12
+        {
+            background: #F2F2F2;
+            color:black;
+            height:45px;
+            margin-right: 4px;
+            border-top-left-radius:5px;
+            border-top-right-radius:5px;
+            border-bottom-left-radius:5px;
+            border-bottom-right-radius:5px; 
+        }
+        #d13
+        {
+            background: #F2F2F2;
+            color:black;
+            height:45px;
+            border-top-left-radius:5px;
+            border-top-right-radius:5px;
+            border-bottom-left-radius:5px;
+            border-bottom-right-radius:5px; 
+        }
+        .margintext
+        {
+            margin-top: 4px;
         }
     </style>
 
     <body>
         <div class="container">
             <div class="row">
-                <div class="mycol2 d1 dbold" id="title2">新疆</div>
+                <div class="mycol2 d1 dbold"  ><input id="title2" value="新疆"></div>
                 <div class="mycol2 d2"></div>
                 <div class="mycol2 d3"></div>
             </div>
@@ -175,9 +216,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
         <div class="container">
             <div class="row">
-                <div class="mycol2 d4 draktext">更新至 2020.02.26 12:40</div>
-                <div class="col-sm-2 d5"></div>
-                <div class="mycol2 d6 draktext"><img id="img1" class="draktext" src="image/问号.png">数据说明</div>
+                <div class="mycol2 d4 draktext mtop">更新至 2020.02.26 12:40</div>
+                <div class="col-sm-2 d5 mtop"></div>
+                <div class="mycol2 d6 draktext mtop"><img id="img1" class="draktext" src="image/问号.png">数据说明</div>
             </div>
         </div>
     
@@ -223,18 +264,46 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>  
         <div class="container">
             <div class="row">
-                <div class="mycol2 d4 dlast"><br>新增<p>确诊趋势</p></div>
-                <div class="mycol2 d5 dlast"><br>累计<p>确诊趋势</p></div>
-                <div class="mycol2 d6 dlast"><br>累计<p>治愈/死亡</p></div>
+                <div class="mycol2 d4 dlast" id="d11" onclick=b1()><div class="margintext">新增<p>确诊趋势</p></div></div>
+                <div class="mycol2 d5 dlast" id="d12" onclick=b2()><div class="margintext">累计<p>确诊趋势</p></div></div>
+                <div class="mycol2 d6 dlast" id="d13" onclick=b3()><div class="margintext">累计<p>治愈/死亡</p></div></div>
             </div>
-        </div>  
+        </div>
+        <script language="javascript" type="text/javascript">
+            function b1()
+            {
+                document.getElementById("d11").style.background="#00BFC8";
+                document.getElementById("d12").style.background="#F2F2F2";
+                document.getElementById("d13").style.background="#F2F2F2";
+                document.getElementById("d11").style.color="white";
+                document.getElementById("d12").style.color="black";
+                document.getElementById("d13").style.color="black";
+            };
+            function b2()
+            {
+                document.getElementById("d11").style.background="#F2F2F2";
+                document.getElementById("d12").style.background="#00BFC8";
+                document.getElementById("d13").style.background="#F2F2F2";
+                document.getElementById("d12").style.color="white";
+                document.getElementById("d11").style.color="black";
+                document.getElementById("d13").style.color="black";
+            };
+            function b3()
+            {
+                document.getElementById("d11").style.background="#F2F2F2";
+                document.getElementById("d12").style.background="#F2F2F2";
+                document.getElementById("d13").style.background="#00BFC8";
+                document.getElementById("d13").style.color="white";
+                document.getElementById("d11").style.color="black";
+                document.getElementById("d12").style.color="black";
+            };
+        </script>
     </body>
     <script src="js/echarts.min.js"></script>
 <script>
   province_name = sessionStorage.getItem('name');
-  content = document.getElementById('u39_input');
+  content = document.getElementById('title2');
   content.value = province_name;
-
 </script>
 
 <script type="text/javascript">
@@ -296,4 +365,5 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   }
 </script>
 </html>
+    
     
