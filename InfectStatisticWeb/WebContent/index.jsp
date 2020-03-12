@@ -121,9 +121,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             font-style: normal;
             font-size: 18px;
         }
-        
         .divleft
         {
+            font-family: 'Arial Negreta', 'Arial Normal', 'Arial', sans-serif;
+            font-weight: 700;
+            font-style: normal;
+            font-size: 18px;
+            height:49px;
+            padding-top: 8px;
             border-top-left-radius:30px;
             border-top-right-radius:30px;
             border-bottom-left-radius:30px;
@@ -132,6 +137,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         }
         .divright
         {
+            font-family: 'Arial Negreta', 'Arial Normal', 'Arial', sans-serif;
+            font-weight: 700;
+            font-style: normal;
+            font-size: 18px;
+            height:49px;
+            padding-top: 8px;
             border-top-left-radius:30px;
             border-top-right-radius:30px;
             border-bottom-left-radius:30px;
@@ -140,6 +151,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         }
         .divoutside
         {
+            height:60px;
             border-top-left-radius:30px;
             border-top-right-radius:30px;
             border-bottom-left-radius:30px;
@@ -227,7 +239,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="container">
             <div class="row">
                
-                <div class="col-sm-5 d5 d7 d9 divoutside nav nav-tabs">
+                <div class="col-sm-5 d5 d7 d9 divoutside ">
                         <div class=" d6 d7  d10 divleft" id="divl" onclick=b1()>
                             <p class="d12" >现有确诊</p>
                         </div>
