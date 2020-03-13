@@ -3,13 +3,12 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
- 
 
 <!DOCTYPE html>
     <!--这个lang="zh-CN"是转化为html5的版本  -->
     <html lang="zh-CN">
     <head>
-    <title>学习bootstrap案例</title>
+    <title>肺炎疫情图</title>
     <!-- 这个是自适应各种分辨率的屏幕 -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>   
@@ -34,7 +33,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         .d3
         {
             margin-top: 50px;
-          
+            text-align: right;
         }
         .d4
         {
@@ -69,13 +68,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             float: left;
             text-align: center;
         }
-        .divmain
+        .divmain1
         {
             height: 470px;
             margin-top:15px;
             border: 1px;
             border-style: solid;
          
+        }
+        .divmain2
+        {
+            position: relative;
+            top:-485px;
+            height: 470px;
+            margin-top:15px;
+            border: 1px;
+            border-style: solid;
+            visibility: hidden;
+        }
+        .divmain3
+        {
+            height: 470px;
+            top:-970px;
+            margin-top:15px;
+            border: 1px;
+            border-style: solid;
+            visibility: hidden;
         }
         .mycol2
         {
@@ -93,7 +111,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         }
         .dlast
         {
-            margin-top:10px;
+            position: relative;
+            top:-960px;
             text-align: center;
         }
         .dbold
@@ -177,6 +196,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             border-top-right-radius:5px;
             border-bottom-left-radius:5px;
             border-bottom-right-radius:5px; 
+            cursor: pointer;
         }
         #d12
         {
@@ -188,6 +208,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             border-top-right-radius:5px;
             border-bottom-left-radius:5px;
             border-bottom-right-radius:5px; 
+            cursor: pointer;
         }
         #d13
         {
@@ -198,19 +219,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             border-top-right-radius:5px;
             border-bottom-left-radius:5px;
             border-bottom-right-radius:5px; 
+            cursor: pointer;
         }
         .margintext
         {
             margin-top: 4px;
         }
+        .btn-info
+        {
+            height:25px;
+            font-size: 14px;
+            text-align: center;
+            line-height: 13px;
+        }
     </style>
 
     <body>
+         
         <div class="container">
             <div class="row">
-                <div class="mycol2 d1 dbold"  ><input id="title2" value="新疆"></div>
+                <div class="mycol2 d1 dbold"  ><input id="title2" value=""></div>
                 <div class="mycol2 d2"></div>
-                <div class="mycol2 d3"></div>
+                <div class="mycol2 d3"><button class="btn btn-info" id="b4" onclick=b4()>返回</button></div>
             </div>
         </div>    
 
@@ -257,7 +287,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       
         <div class="container">
             <div class="row">
-                <div class="mycol6 col-sm-6 d4 divmain" id="div_main">
+                <div class="mycol6 col-sm-6 d4 divmain1" id="div_main1">
+                   
+                </div>
+            </div>
+        </div>  
+        <div class="container">
+            <div class="row">
+                <div class="mycol6 col-sm-6 d4 divmain2" id="div_main2">
+                   
+                </div>
+            </div>
+        </div>  
+        <div class="container">
+            <div class="row">
+                <div class="mycol6 col-sm-6 d4 divmain3" id="div_main3">
                    
                 </div>
             </div>
@@ -278,6 +322,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 document.getElementById("d11").style.color="white";
                 document.getElementById("d12").style.color="black";
                 document.getElementById("d13").style.color="black";
+                document.getElementById("div_main1").style.visibility="initial";
+                document.getElementById("div_main2").style.visibility="hidden";
+                document.getElementById("div_main3").style.visibility="hidden";
             };
             function b2()
             {
@@ -287,6 +334,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 document.getElementById("d12").style.color="white";
                 document.getElementById("d11").style.color="black";
                 document.getElementById("d13").style.color="black";
+                document.getElementById("div_main2").style.visibility="initial";
+                document.getElementById("div_main1").style.visibility="hidden";
+                document.getElementById("div_main3").style.visibility="hidden";
             };
             function b3()
             {
@@ -296,7 +346,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 document.getElementById("d13").style.color="white";
                 document.getElementById("d11").style.color="black";
                 document.getElementById("d12").style.color="black";
+                document.getElementById("div_main3").style.visibility="initial";
+                document.getElementById("div_main1").style.visibility="hidden";
+                document.getElementById("div_main2").style.visibility="hidden";
             };
+            function b4()
+            {
+              window.location.href = "index.jsp";
+            }
         </script>
     </body>
     <script src="js/echarts.min.js"></script>
@@ -307,7 +364,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </script>
 
 <script type="text/javascript">
-  var dom = document.getElementById("div_main");
+  var dom = document.getElementById("div_main1");
   var myChart = echarts.init(dom);
   var app = {};
   option = null;
@@ -363,7 +420,118 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   if (option && typeof option === "object") {
     myChart.setOption(option, true);
   }
+  var dom = document.getElementById("div_main2");
+  var myChart = echarts.init(dom);
+  var app = {};
+  option = null;
+  option = {
+    title: {
+      text: province_name + "累计确诊趋势",
+      textStyle: {
+        fontSize: 13,
+      }
+    },
+    tooltip: {
+      formatter: function (params, ticket, callback) {
+        return params.name + '<br />' + '新增确诊:' + params.value
+      }//数据格式化
+    },
+    xAxis: {
+      name: '日期',
+      type: 'category',
+      data: ['2-21', '2-22', '2-23', '2-24', '2-25', '2-26', '2-27'],
+      axisLabel: {
+        textStyle: {
+          fontSize: 10,
+          color: '#7F7F7F'
+        }
+      },
+      nameTextStyle:{
+            color:'#7F7F7F',
+        },
+     
+    },
+    yAxis: {
+      name: '单位:例',
+      type: 'value',
+      axisLabel: {
+        textStyle: {
+          fontSize: 10,
+          color: '#7F7F7F'
+        }
+      },
+      nameTextStyle:{
+            color:'#7F7F7F',
+        },
+
+    },
+    series: [{
+      data: [1, 2, 3, 3, 4, 2, 3],
+      type: 'line',
+      smooth: true
+
+    }]
+  };
+  ;
+  if (option && typeof option === "object") {
+    myChart.setOption(option, true);
+  }
+  var dom = document.getElementById("div_main3");
+  var myChart = echarts.init(dom);
+  var app = {};
+  option = null;
+  option = {
+    title: {
+      text: province_name + "累计治愈/死亡",
+      textStyle: {
+        fontSize: 13,
+      }
+    },
+    tooltip: {
+      formatter: function (params, ticket, callback) {
+        return params.name + '<br />' + '新增确诊:' + params.value
+      }//数据格式化
+    },
+    xAxis: {
+      name: '日期',
+      type: 'category',
+      data: ['2-21', '2-22', '2-23', '2-24', '2-25', '2-26', '2-27'],
+      axisLabel: {
+        textStyle: {
+          fontSize: 10,
+          color: '#7F7F7F'
+        }
+      },
+      nameTextStyle:{
+            color:'#7F7F7F',
+        },
+     
+    },
+    yAxis: {
+      name: '单位:例',
+      type: 'value',
+      axisLabel: {
+        textStyle: {
+          fontSize: 10,
+          color: '#7F7F7F'
+        }
+      },
+      nameTextStyle:{
+            color:'#7F7F7F',
+        },
+
+    },
+    series: [{
+      data: [1, 2, 1, 2, 1, 1, 0],
+      type: 'line',
+      smooth: true
+
+    }]
+  };
+  ;
+  if (option && typeof option === "object") {
+    myChart.setOption(option, true);
+  }
 </script>
 </html>
-    
     

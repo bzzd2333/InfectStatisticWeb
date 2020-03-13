@@ -3,12 +3,12 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
- 
+
 <!DOCTYPE html>
     <!--这个lang="zh-CN"是转化为html5的版本  -->
     <html lang="zh-CN">
     <head>
-    <title>学习bootstrap案例</title>
+    <title>肺炎疫情图</title>
     <!-- 这个是自适应各种分辨率的屏幕 -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>   
@@ -16,6 +16,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" href="css/style.css"/>
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script language="javascript" type="text/javascript">
+        function b1()
+        {
+            document.getElementById("divl").style.background="white";
+            document.getElementById("divr").style.background="#D7D7D7";
+            document.getElementById("main_div1").style.visibility="initial";
+            document.getElementById("main_div2").style.visibility="hidden";
+           
+ 
+        };
+        function b2()
+        {
+            document.getElementById("divl").style.background="#D7D7D7";
+            document.getElementById("divr").style.background="white";
+            document.getElementById("main_div2").style.visibility="initial";
+            document.getElementById("main_div1").style.visibility="hidden";
+        };
+    </script>
     <style>
         .d1
         {
@@ -23,6 +41,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             margin-left: 300px;
             margin-top: 50px;
             text-align: left;
+        
         }
         .d2
         {
@@ -96,16 +115,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         {
             margin-top: 5px;
         }
-        .dmain
+        .dmain1
         {
             margin-top: 10px;
             height:525px;
             background: #F2F2F2;
             margin-left: 300px;
+            display: block;
+            visibility:initial;
+            
+        }
+        .dmain2
+        {
+            position: relative;
+            top:-535px;
+            margin-top: 10px;
+            height:525px;
+            background: #F2F2F2;
+            margin-left: 300px;
+            visibility:hidden;
+          
         }
         .dbottom
         {
-            margin-top: 20px;
+            margin-top: -530px;
             margin-left: 300px;
         }
         .draktext
@@ -123,6 +156,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         }
         .divleft
         {
+            
             font-family: 'Arial Negreta', 'Arial Normal', 'Arial', sans-serif;
             font-weight: 700;
             font-style: normal;
@@ -134,6 +168,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             border-bottom-left-radius:30px;
             border-bottom-right-radius:30px; 
             background: white;
+            cursor: pointer;
         }
         .divright
         {
@@ -148,6 +183,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             border-bottom-left-radius:30px;
             border-bottom-right-radius:30px; 
             background: #D7D7D7;
+            cursor: pointer;
         }
         .divoutside
         {
@@ -182,14 +218,63 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         {
             font-size: 12px;
         }
+        .inputbox1
+        {
+            float:left;
+            width:40px;
+            height: 15px;
+            margin-top: 2px;
+        }
+        .inputbox2
+        {
+            float:left;
+            width:20px;
+            margin-left: 2px;
+            height: 15px;
+            margin-top: 2px;
+        }
+        .inputbox3
+        {
+            float:left;
+            width:20px;
+            margin-left: 2px;
+            height: 15px;
+            margin-top: 2px;
+        }
+        .divfloat
+        {
+            float:left;
+        
+        }
+        .btn
+        {
+            height:17px;
+            width: 35px;
+            padding-top: 0px;
+            font-size: 12px;
+            padding-left: 5px;
+            margin-left: 10px;
+            margin-top: -3px;
+        }
     </style>
    
     </head>
     <body>
         <div class="container">
             <div class="row">
-                <div class="col-sm-2 d1 draktext">更新至2020.02.25</div>
-                <div class="col-sm-2 d2"></div>
+                <div class="col-sm-4 d1 draktext">更新至
+                    <form action="1.html">
+                        <input class="inputbox1" value="2020">
+                        <div class="divfloat">年</div>
+                        <input class="inputbox2" value="02">
+                        <div class="divfloat">月</div>
+                        <input class="inputbox3"value="25">
+                        <div class="divfloat">日</div>
+                        <button type="submit" class="btn btn-primary ">查看</button>   
+                    </form>
+
+                </div>
+       
                 <div class="col-sm-2 d3 draktext"><img id="img1" class="draktext" src="image/问号.png">数据说明</div>
             </div>
         </div>
@@ -238,7 +323,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
         <div class="container">
             <div class="row">
-               
                 <div class="col-sm-5 d5 d7 d9 divoutside ">
                         <div class=" d6 d7  d10 divleft" id="divl" onclick=b1()>
                             <p class="d12" >现有确诊</p>
@@ -249,21 +333,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </div>
             </div>
         </div>
-        <script language="javascript" type="text/javascript">
-            function b1()
-            {
-                document.getElementById("divl").style.background="white";
-                document.getElementById("divr").style.background="#D7D7D7";
-            };
-            function b2()
-            {
-                document.getElementById("divl").style.background="#D7D7D7";
-                document.getElementById("divr").style.background="white";
-            };
-        </script>
         <div class="container">
             <div class="row">
-                <div class="col-sm-6 dmain" id="main_div"></div>
+                <div class="col-sm-6 dmain1" id="main_div1"></div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 dmain2" id="main_div2"></div>
             </div>
         </div>
         <div class="container">
@@ -314,7 +391,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 { name: '香港', value: randomValue() },
                 { name: '澳门', value: randomValue() }
             ]
-            var myChart = echarts.init(document.getElementById('main_div'));
+            var myChart = echarts.init(document.getElementById('main_div1'));
             function randomValue() {
                 return Math.round(Math.random() * 1000);
             }
@@ -362,7 +439,104 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 },
                 series: [
                     {
-                        name: '信息量',
+                        name: "现有确诊",
+                        type: 'map',
+                        geoIndex: 0,
+                        data: dataList
+                    }
+                ]
+            };
+            myChart.setOption(option);
+            myChart.on('click', function (params) {
+                sessionStorage.setItem('name', params.name);
+                window.location.href = "2.html";
+            });
+            var dataList = [
+                { name: "南海诸岛", value: 0 },
+                { name: '北京', value: randomValue() },
+                { name: '天津', value: randomValue() },
+                { name: '上海', value: randomValue() },
+                { name: '重庆', value: randomValue() },
+                { name: '河北', value: randomValue() },
+                { name: '河南', value: randomValue() },
+                { name: '云南', value: randomValue() },
+                { name: '辽宁', value: randomValue() },
+                { name: '黑龙江', value: randomValue() },
+                { name: '湖南', value: randomValue() },
+                { name: '安徽', value: randomValue() },
+                { name: '山东', value: randomValue() },
+                { name: '新疆', value: randomValue() },
+                { name: '江苏', value: randomValue() },
+                { name: '浙江', value: randomValue() },
+                { name: '江西', value: randomValue() },
+                { name: '湖北', value: randomValue() },
+                { name: '广西', value: randomValue() },
+                { name: '甘肃', value: randomValue() },
+                { name: '山西', value: randomValue() },
+                { name: '内蒙古', value: randomValue() },
+                { name: '陕西', value: randomValue() },
+                { name: '吉林', value: randomValue() },
+                { name: '福建', value: randomValue() },
+                { name: '贵州', value: randomValue() },
+                { name: '广东', value: randomValue() },
+                { name: '青海', value: randomValue() },
+                { name: '西藏', value: randomValue() },
+                { name: '四川', value: randomValue() },
+                { name: '宁夏', value: randomValue() },
+                { name: '海南', value: randomValue() },
+                { name: '台湾', value: randomValue() },
+                { name: '香港', value: randomValue() },
+                { name: '澳门', value: randomValue() }
+            ]
+            var myChart = echarts.init(document.getElementById('main_div2'));
+            function randomValue() {
+                return Math.round(Math.random() * 1000);
+            }
+            option = {
+                tooltip: {
+                    formatter: function (params, ticket, callback) {
+                        return params.seriesName + '<br />' + params.name + '：' + params.value
+                    }//数据格式化
+                },
+                visualMap: {
+                    min: 0,
+                    max: 1500,
+                    left: 'left',
+                    top: 'bottom',
+                    text: ['高', '低'],//取值范围的文字
+                    inRange: {
+                        color: ['#e0ffff', '#006edd']//取值范围的颜色
+                    },
+                    show: true//图注
+                },
+                geo: {
+                    map: 'china',
+                    roam: false,//不开启缩放和平移
+                    zoom: 1.23,//视角缩放比例
+                    label: {
+                        normal: {
+                            show: true,
+                            fontSize: '10',
+                            color: 'rgba(0,0,0,0.7)'
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            borderColor: 'rgba(0, 0, 0, 0.2)'
+                        },
+                        emphasis: {
+                            areaColor: '#F3B329',//鼠标选择区域颜色
+                            shadowOffsetX: 0,
+                            shadowOffsetY: 0,
+                            shadowBlur: 20,
+                            borderWidth: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                },
+                series: [
+                    {
+                        name: "累计确诊",
                         type: 'map',
                         geoIndex: 0,
                         data: dataList
@@ -373,19 +547,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             myChart.on('click', function (params) {
                 sessionStorage.setItem('name', params.name);
                 window.location.href = "detail.jsp";
-                //alert(params.name);
             });
-  
-            /*  setTimeout(function () {
-                  myChart.setOption({
-                      series : [
-                          {
-                              name: '信息量',
-                              type: 'map',
-                              geoIndex: 0,
-                              data:dataList
-                          }
-                      ]
-                  });
-              },1000)*/
+           
         </script>
