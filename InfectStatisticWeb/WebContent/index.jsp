@@ -449,7 +449,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             myChart.setOption(option);
             myChart.on('click', function (params) {
                 sessionStorage.setItem('name', params.name);
-                window.location.href = "2.html";
+                window.location.href = "detail.jsp";
             });
             var dataList = [
                 { name: "南海诸岛", value: 0 },
