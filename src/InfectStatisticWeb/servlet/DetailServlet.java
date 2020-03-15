@@ -1,6 +1,7 @@
 package InfectStatisticWeb.servlet;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -41,26 +42,84 @@ public class DetailServlet extends HttpServlet
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-	    //必须设置，否则跳转页面中文乱码
+	    //必须设置，否则跳转页面中文乱码	    
 	    response.setCharacterEncoding("utf-8");
+	    request.setCharacterEncoding("utf-8");
 	    ProvinceDAO provinceDAO = new ProvinceDAOImpl();        
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");                      
         String flag = request.getParameter("flag");
         String province = request.getParameter("province");
+        String date = request.getParameter("year") + "-" + request.getParameter("month") + "-" + request.getParameter("day");
+        System.out.println(date);
+        System.out.println(province);
+        Date today = new Date();
         
-        if (flag != null && flag.equals("date"))
+        if (flag != null && !date.equals(df.format(today)))
         {
-            
-        }
-        //跳转页面选项
-        else if(flag != null && flag.equals("return"))     
-        {            
-            request.getRequestDispatcher("index.jsp").forward(request, response);
-        }
+            System.out.println("进入");
+            try
+            {
+                Date d = df.parse(date);
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(d);
+                calendar.add(calendar.DATE, -1);
+                Date yesterday = calendar.getTime();
+                
+                String year = String.format("%tY", d);
+                String month = String.format("%tm", d);
+                String day = String.format("%td", d);
+                
+                //获取今天该省份数据
+                HashMap<String, List<Province>> todayData = provinceDAO.dealOneProvince(df.format(d), province);
+                List<Province> todayOneList = todayData.get("1");
+                List<Province> todayAllList = todayData.get("2");
+                Province todayData1 = todayAllList.get(todayAllList.size() - 1);
+                Province yesterdayData1 = todayAllList.get(todayAllList.size() - 2);
+                int[] todayArray = todayData1.getData();
+                int[] yesterdayArray = yesterdayData1.getData();
+                
+                //存放今日与昨日的对比
+                String[] compareData = new String[6];
+                for (int i = 0; i < 6; i ++)
+                {
+                    if ((todayArray[i] - yesterdayArray[i]) >= 0)
+                    {
+                        compareData[i] = "+" + (todayArray[i] - yesterdayArray[i]);
+                    }
+                    else 
+                    {
+                        compareData[i] = "" + (todayArray[i] - yesterdayArray[i]);
+                    }
+                }
+                //发送省份名称
+                request.setAttribute("provinceName", todayData1.getName());
+                
+                //发送日期
+                request.setAttribute("year", year);
+                request.setAttribute("month", month);
+                request.setAttribute("day", day);
+                
+                //发送今日省份数据
+                request.setAttribute("todayData", todayData1);
+                
+                //发送昨日省份对比数据
+                request.setAttribute("compare1", compareData);   
+                
+                Gson json = new Gson();
+                String result = json.toJson(todayOneList);
+                System.out.println(result);
+            } 
+            catch (Exception e) {
+                // TODO: handle exception
+                e.printStackTrace();
+            }
+                               
+            request.getRequestDispatcher("detail.jsp").forward(request, response);
+        }       
         //默认页面
         else 
         {
-            Date today = new Date();
+            
             Calendar calendar = Calendar.getInstance();
             calendar.add(Calendar.DATE, -1);
             Date yesterday = calendar.getTime();
@@ -90,6 +149,9 @@ public class DetailServlet extends HttpServlet
                     compareData[i] = "" + (todayArray[i] - yesterdayArray[i]);
                 }
             }
+            
+            //发送省份名称
+            request.setAttribute("provinceName", todayData1.getName());
             //发送日期
             request.setAttribute("year", year);
             request.setAttribute("month", month);
