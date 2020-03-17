@@ -18,3 +18,7 @@
 ![image](https://github.com/bzzd2333/InfectStatisticWeb/blob/master/Readme%E6%88%AA%E5%9B%BE/run.png)
 * 将index.jsp的url复制到浏览器上打开，以保证echarts的点击事件能够执行
 ![image](https://github.com/bzzd2333/InfectStatisticWeb/blob/master/Readme%E6%88%AA%E5%9B%BE/run2.png)
+
+#### 备注：如果运行时发现没有数据，请将FileUtil.java文件里的logPath改为绝对路径。
+![image](https://github.com/bzzd2333/InfectStatisticWeb/blob/master/Readme%E6%88%AA%E5%9B%BE/%E8%B7%AF%E5%BE%84%E5%9B%BE.png)
+
